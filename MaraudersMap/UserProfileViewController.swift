@@ -8,11 +8,13 @@
 
 import UIKit
 
-class UserProfileViewController: UIViewController {
+class UserProfileViewController: UIViewController, UITableViewDataSource {
+    @IBOutlet weak var groupTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        groupTableView.dataSource = self;
     }
     
     override func didReceiveMemoryWarning() {
@@ -20,5 +22,16 @@ class UserProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    var itemsList = ["Group 1", "Group 2", "Group 3"]
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return itemsList.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("GroupViewCell") as UITableViewCell
+        cell.textLabel!.text = itemsList[indexPath.row]
+        return cell
+    }
     
 }
