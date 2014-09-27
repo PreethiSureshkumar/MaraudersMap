@@ -13,6 +13,10 @@
 		6016E3B519D623FB00480E27 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6016E3B419D623FB00480E27 /* Images.xcassets */; };
 		6016E3B819D623FB00480E27 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6016E3B619D623FB00480E27 /* LaunchScreen.xib */; };
 		6016E3C419D623FB00480E27 /* MaraudersMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6016E3C319D623FB00480E27 /* MaraudersMapTests.swift */; };
+		6016E3CE19D6303300480E27 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6016E3CD19D6303300480E27 /* SignUpViewController.swift */; };
+		6016E3D019D63D3400480E27 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6016E3CF19D63D3400480E27 /* UserProfileViewController.swift */; };
+		60EFCB0D19D70E0500EECAFE /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFCB0C19D70E0500EECAFE /* CreateGroupViewController.swift */; };
+		60EFCB0F19D7209500EECAFE /* JoinGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFCB0E19D7209500EECAFE /* JoinGroupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +40,10 @@
 		6016E3BD19D623FB00480E27 /* MaraudersMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MaraudersMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6016E3C219D623FB00480E27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6016E3C319D623FB00480E27 /* MaraudersMapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaraudersMapTests.swift; sourceTree = "<group>"; };
+		6016E3CD19D6303300480E27 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		6016E3CF19D63D3400480E27 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		60EFCB0C19D70E0500EECAFE /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
+		60EFCB0E19D7209500EECAFE /* JoinGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinGroupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,12 +85,16 @@
 		6016E3AA19D623FB00480E27 /* MaraudersMap */ = {
 			isa = PBXGroup;
 			children = (
+				6016E3CF19D63D3400480E27 /* UserProfileViewController.swift */,
+				60EFCB0C19D70E0500EECAFE /* CreateGroupViewController.swift */,
+				6016E3CD19D6303300480E27 /* SignUpViewController.swift */,
 				6016E3AD19D623FB00480E27 /* AppDelegate.swift */,
 				6016E3AF19D623FB00480E27 /* ViewController.swift */,
 				6016E3B119D623FB00480E27 /* Main.storyboard */,
 				6016E3B419D623FB00480E27 /* Images.xcassets */,
 				6016E3B619D623FB00480E27 /* LaunchScreen.xib */,
 				6016E3AB19D623FB00480E27 /* Supporting Files */,
+				60EFCB0E19D7209500EECAFE /* JoinGroupViewController.swift */,
 			);
 			path = MaraudersMap;
 			sourceTree = "<group>";
@@ -212,7 +224,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60EFCB0D19D70E0500EECAFE /* CreateGroupViewController.swift in Sources */,
+				6016E3CE19D6303300480E27 /* SignUpViewController.swift in Sources */,
+				6016E3D019D63D3400480E27 /* UserProfileViewController.swift in Sources */,
 				6016E3B019D623FB00480E27 /* ViewController.swift in Sources */,
+				60EFCB0F19D7209500EECAFE /* JoinGroupViewController.swift in Sources */,
 				6016E3AE19D623FB00480E27 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,6 +423,7 @@
 				6016E3C919D623FB00480E27 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6016E3CA19D623FB00480E27 /* Build configuration list for PBXNativeTarget "MaraudersMapTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +432,7 @@
 				6016E3CC19D623FB00480E27 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
