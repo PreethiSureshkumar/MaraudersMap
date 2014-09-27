@@ -17,6 +17,7 @@
 		6016E3D019D63D3400480E27 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6016E3CF19D63D3400480E27 /* UserProfileViewController.swift */; };
 		60EFCB0D19D70E0500EECAFE /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFCB0C19D70E0500EECAFE /* CreateGroupViewController.swift */; };
 		60EFCB0F19D7209500EECAFE /* JoinGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFCB0E19D7209500EECAFE /* JoinGroupViewController.swift */; };
+		60EFCB1119D7395900EECAFE /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFCB1019D7395900EECAFE /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		6016E3CF19D63D3400480E27 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		60EFCB0C19D70E0500EECAFE /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		60EFCB0E19D7209500EECAFE /* JoinGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinGroupViewController.swift; sourceTree = "<group>"; };
+		60EFCB1019D7395900EECAFE /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 				6016E3B619D623FB00480E27 /* LaunchScreen.xib */,
 				6016E3AB19D623FB00480E27 /* Supporting Files */,
 				60EFCB0E19D7209500EECAFE /* JoinGroupViewController.swift */,
+				60EFCB1019D7395900EECAFE /* MapViewController.swift */,
 			);
 			path = MaraudersMap;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				6016E3B019D623FB00480E27 /* ViewController.swift in Sources */,
 				60EFCB0F19D7209500EECAFE /* JoinGroupViewController.swift in Sources */,
 				6016E3AE19D623FB00480E27 /* AppDelegate.swift in Sources */,
+				60EFCB1119D7395900EECAFE /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
