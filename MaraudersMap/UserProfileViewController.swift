@@ -8,13 +8,17 @@
 
 import UIKit
 
-class UserProfileViewController: UIViewController, UITableViewDataSource {
+class UserProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
+    
     @IBOutlet weak var groupTableView: UITableView!
+    
+    var groupName:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        groupTableView.dataSource = self;
+        groupTableView.dataSource = self
+        groupTableView.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
@@ -31,7 +35,22 @@ class UserProfileViewController: UIViewController, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("GroupViewCell") as UITableViewCell
         cell.textLabel!.text = itemsList[indexPath.row]
+        //cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        groupName = itemsList[indexPath.row]
+        self.performSegueWithIdentifier("LoadMapSegue", sender: self)
+        
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "LoadMapSegue"){
+            var mapViewController = segue.destinationViewController as MapViewController
+            mapViewController.userName = "User 1"
+            mapViewController.groupName = groupName
+        }
     }
     
 }
