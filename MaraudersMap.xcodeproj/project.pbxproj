@@ -20,6 +20,7 @@
 		60EFCB1319D7569300EECAFE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60EFCB1219D7569300EECAFE /* AddressBook.framework */; };
 		60EFCB1519D756B200EECAFE /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60EFCB1419D756B200EECAFE /* AddressBookUI.framework */; };
 		60EFCB1919D7961200EECAFE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60EFCB1819D7961200EECAFE /* Images.xcassets */; };
+		60F90E6A19D8992A00CB064F /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F90E6919D8992A00CB064F /* NotificationsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		60EFCB1219D7569300EECAFE /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		60EFCB1419D756B200EECAFE /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		60EFCB1819D7961200EECAFE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		60F90E6919D8992A00CB064F /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				6016E3AB19D623FB00480E27 /* Supporting Files */,
 				60EFCB0E19D7209500EECAFE /* JoinGroupViewController.swift */,
 				60EFCB1019D7395900EECAFE /* MapViewController.swift */,
+				60F90E6919D8992A00CB064F /* NotificationsViewController.swift */,
 			);
 			path = MaraudersMap;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				60EFCB0F19D7209500EECAFE /* JoinGroupViewController.swift in Sources */,
 				6016E3AE19D623FB00480E27 /* AppDelegate.swift in Sources */,
 				60EFCB1119D7395900EECAFE /* MapViewController.swift in Sources */,
+				60F90E6A19D8992A00CB064F /* NotificationsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
