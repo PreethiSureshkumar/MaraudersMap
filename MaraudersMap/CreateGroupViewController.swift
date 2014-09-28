@@ -21,7 +21,7 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var Lat: UILabel!
     @IBOutlet weak var Long: UILabel!
     @IBOutlet weak var Addr: UILabel!
-    var locationManager:CLLocationManager?
+    var locationManager:CLLocationManager!
     
     lazy var addressBook:ABAddressBookRef = {
         var error: Unmanaged<CFError>?
@@ -61,15 +61,15 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
         
         namesAndNumbers = [(String, String)]()
         for person: ABRecordRef in allPeople{
-            println(person)
+            //println(person)
             var contactName: String = ABRecordCopyCompositeName(person).takeRetainedValue() as NSString
-            println ("contactName \(contactName)")
+            //println ("contactName \(contactName)")
             
             let phoneNumbers: ABMultiValueRef = ABRecordCopyValue(person, kABPersonPhoneProperty).takeRetainedValue() as ABMultiValueRef
             
             var contactNo: String = ABMultiValueCopyValueAtIndex(phoneNumbers, ABMultiValueGetIndexForIdentifier(phoneNumbers, ABMultiValueGetIdentifierAtIndex(phoneNumbers, 0))).takeRetainedValue() as NSString
             
-            println(contactNo)
+            //println(contactNo)
             
             namesAndNumbers.append((contactName, contactNo))
         }
@@ -107,9 +107,32 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
         //Get all the selected values and push it to DB
         
         //Getting GPS data
-        locationManager?.delegate = self
-        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-        [locationManager?.startUpdatingLocation];
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
         
+    }
+    
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        println("Error while updating location " + error.localizedDescription)
+        var alert = UIAlertController(title: "Error", message: "MESSAGE", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        //if (locationFixAchieved == false) {
+          //  locationFixAchieved = true
+            println("Inside update location")
+            var locationArray = locations as NSArray
+            var locationObj = locationArray.lastObject as CLLocation
+            var coord = locationObj.coordinate
+            
+            println(coord.latitude)
+            println(coord.longitude)
+        //}
     }
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class UserProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
+    @IBOutlet weak var HomePageItem: UITabBarItem!
     @IBOutlet weak var groupTableView: UITableView!
     
     @IBOutlet weak var ProfileImage: UIImageView!
@@ -23,8 +24,16 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UITabl
         ProfileImage.clipsToBounds = true
         groupTableView.dataSource = self
         groupTableView.delegate = self
+        var home_selected:UIImage = UIImage(named: "home_selected.png")
+        HomePageItem.selectedImage = home_selected
     }
     
+    override func viewDidAppear(animated: Bool) {
+        var badgeValue:String = HomePageItem.badgeValue!
+        var badgeNo:Int = badgeValue.toInt()!
+        badgeNo = badgeNo + 1
+        HomePageItem.badgeValue = "\(badgeNo)"
+    }
     override func viewWillLayoutSubviews() {
         groupTableView.sectionHeaderHeight = 0.0
         groupTableView.sectionFooterHeight = 0.0

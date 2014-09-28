@@ -38,7 +38,7 @@ class MapViewController: UIViewController {
             theUlmMinsterAnnotation.subtitle = "Very famous"
             
             self.theMapView.addAnnotation(theUlmMinsterAnnotation)
-
+            self.theMapView.showsUserLocation = true
         }
     }
     
