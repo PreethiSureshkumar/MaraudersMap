@@ -23,18 +23,12 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UITabl
         ProfileImage.clipsToBounds = true
         groupTableView.dataSource = self
         groupTableView.delegate = self
-        
-        //groupTableViewHeightConstraint.constant = groupTableView.contentSize.height
-//        groupTableView.sizeToFit()
-       // println("Breakpoint")
     }
     
     override func viewWillLayoutSubviews() {
-        groupTableView.sectionFooterHeight = 0
-        //groupTableView.frame.size.height = groupTableView.contentSize.height
+        groupTableView.sectionHeaderHeight = 0.0
+        groupTableView.sectionFooterHeight = 0.0
         groupTableViewHeightConstraint.constant = groupTableView.contentSize.height
-                //groupTableView.sizeToFit()
-        //println("Breakpoint")
     }
     
     override func didReceiveMemoryWarning() {
@@ -68,5 +62,4 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UITabl
             mapViewController.groupName = groupName
         }
     }
-    
 }
