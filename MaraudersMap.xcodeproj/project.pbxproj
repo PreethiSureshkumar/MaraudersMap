@@ -10,7 +10,6 @@
 		6016E3AE19D623FB00480E27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6016E3AD19D623FB00480E27 /* AppDelegate.swift */; };
 		6016E3B019D623FB00480E27 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6016E3AF19D623FB00480E27 /* ViewController.swift */; };
 		6016E3B319D623FB00480E27 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6016E3B119D623FB00480E27 /* Main.storyboard */; };
-		6016E3B519D623FB00480E27 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6016E3B419D623FB00480E27 /* Images.xcassets */; };
 		6016E3B819D623FB00480E27 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6016E3B619D623FB00480E27 /* LaunchScreen.xib */; };
 		6016E3C419D623FB00480E27 /* MaraudersMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6016E3C319D623FB00480E27 /* MaraudersMapTests.swift */; };
 		6016E3CE19D6303300480E27 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6016E3CD19D6303300480E27 /* SignUpViewController.swift */; };
@@ -18,6 +17,9 @@
 		60EFCB0D19D70E0500EECAFE /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFCB0C19D70E0500EECAFE /* CreateGroupViewController.swift */; };
 		60EFCB0F19D7209500EECAFE /* JoinGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFCB0E19D7209500EECAFE /* JoinGroupViewController.swift */; };
 		60EFCB1119D7395900EECAFE /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60EFCB1019D7395900EECAFE /* MapViewController.swift */; };
+		60EFCB1319D7569300EECAFE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60EFCB1219D7569300EECAFE /* AddressBook.framework */; };
+		60EFCB1519D756B200EECAFE /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60EFCB1419D756B200EECAFE /* AddressBookUI.framework */; };
+		60EFCB1919D7961200EECAFE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60EFCB1819D7961200EECAFE /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +38,6 @@
 		6016E3AD19D623FB00480E27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6016E3AF19D623FB00480E27 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6016E3B219D623FB00480E27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		6016E3B419D623FB00480E27 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6016E3B719D623FB00480E27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		6016E3BD19D623FB00480E27 /* MaraudersMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MaraudersMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6016E3C219D623FB00480E27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -46,6 +47,9 @@
 		60EFCB0C19D70E0500EECAFE /* CreateGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		60EFCB0E19D7209500EECAFE /* JoinGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinGroupViewController.swift; sourceTree = "<group>"; };
 		60EFCB1019D7395900EECAFE /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		60EFCB1219D7569300EECAFE /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		60EFCB1419D756B200EECAFE /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		60EFCB1819D7961200EECAFE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60EFCB1519D756B200EECAFE /* AddressBookUI.framework in Frameworks */,
+				60EFCB1319D7569300EECAFE /* AddressBook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +75,8 @@
 		6016E39F19D623FB00480E27 = {
 			isa = PBXGroup;
 			children = (
+				60EFCB1419D756B200EECAFE /* AddressBookUI.framework */,
+				60EFCB1219D7569300EECAFE /* AddressBook.framework */,
 				6016E3AA19D623FB00480E27 /* MaraudersMap */,
 				6016E3C019D623FB00480E27 /* MaraudersMapTests */,
 				6016E3A919D623FB00480E27 /* Products */,
@@ -93,7 +101,6 @@
 				6016E3AD19D623FB00480E27 /* AppDelegate.swift */,
 				6016E3AF19D623FB00480E27 /* ViewController.swift */,
 				6016E3B119D623FB00480E27 /* Main.storyboard */,
-				6016E3B419D623FB00480E27 /* Images.xcassets */,
 				6016E3B619D623FB00480E27 /* LaunchScreen.xib */,
 				6016E3AB19D623FB00480E27 /* Supporting Files */,
 				60EFCB0E19D7209500EECAFE /* JoinGroupViewController.swift */,
@@ -105,6 +112,7 @@
 		6016E3AB19D623FB00480E27 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				60EFCB1819D7961200EECAFE /* Images.xcassets */,
 				6016E3AC19D623FB00480E27 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -207,9 +215,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60EFCB1919D7961200EECAFE /* Images.xcassets in Resources */,
 				6016E3B319D623FB00480E27 /* Main.storyboard in Resources */,
 				6016E3B819D623FB00480E27 /* LaunchScreen.xib in Resources */,
-				6016E3B519D623FB00480E27 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +366,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = MaraudersMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -368,6 +377,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = MaraudersMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
