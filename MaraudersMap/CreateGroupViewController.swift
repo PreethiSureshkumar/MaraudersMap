@@ -57,19 +57,32 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
     var namesAndNumbers = [(String, String)]()
     
     func readFromAddressBook(addressBook:ABAddressBookRef){
-        let allPeople = ABAddressBookCopyArrayOfAllPeople(addressBook).takeRetainedValue() as NSArray
+        //let addressBook : ABAddressBookRef = ABAddressBookCreateWithOptions(nil,
+        //    nil).takeRetainedValue()
+        
+        var source : ABRecordRef =
+        ABAddressBookCopyDefaultSource(addressBook).takeRetainedValue()
+        
+        let sortOrder : ABPersonSortOrdering =
+        UInt32(kABPersonSortByLastName)
+        
+        let allPeople =
+        ABAddressBookCopyArrayOfAllPeopleInSourceWithSortOrdering(addressBook,
+            source, sortOrder).takeRetainedValue() as NSArray
+        
+        //let allPeople = ABAddressBookCopyArrayOfAllPeople(addressBook).takeRetainedValue() as NSArray
         
         namesAndNumbers = [(String, String)]()
         for person: ABRecordRef in allPeople{
-            //println(person)
+            println(person)
             var contactName: String = ABRecordCopyCompositeName(person).takeRetainedValue() as NSString
-            //println ("contactName \(contactName)")
+            println ("contactName \(contactName)")
             
             let phoneNumbers: ABMultiValueRef = ABRecordCopyValue(person, kABPersonPhoneProperty).takeRetainedValue() as ABMultiValueRef
             
             var contactNo: String = ABMultiValueCopyValueAtIndex(phoneNumbers, ABMultiValueGetIndexForIdentifier(phoneNumbers, ABMultiValueGetIdentifierAtIndex(phoneNumbers, 0))).takeRetainedValue() as NSString
             
-            //println(contactNo)
+            println(contactNo)
             
             namesAndNumbers.append((contactName, contactNo))
         }
