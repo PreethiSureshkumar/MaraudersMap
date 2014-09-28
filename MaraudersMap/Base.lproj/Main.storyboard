@@ -297,7 +297,28 @@
                                 <state key="normal" title="Create Group">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="createGroup:" destination="xMH-OF-xTe" eventType="touchUpInside" id="GuQ-3h-5DW"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Long" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nvh-N0-5Yg">
+                                <rect key="frame" x="246" y="497" width="71" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Addr" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4lL-jK-czN">
+                                <rect key="frame" x="383" y="497" width="168" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Lat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="laF-CS-Ekk">
+                                <rect key="frame" x="131" y="497" width="79" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -315,6 +336,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Create" id="h63-GR-qpA"/>
                     <connections>
+                        <outlet property="Addr" destination="4lL-jK-czN" id="Xhe-D3-s1R"/>
+                        <outlet property="Lat" destination="laF-CS-Ekk" id="Yoh-Yd-zsq"/>
+                        <outlet property="Long" destination="Nvh-N0-5Yg" id="9Zo-aZ-Xkc"/>
                         <outlet property="contactTableView" destination="Uv0-wP-ouo" id="p8E-4w-nGm"/>
                     </connections>
                 </viewController>

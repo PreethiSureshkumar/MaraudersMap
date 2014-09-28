@@ -8,14 +8,20 @@
 
 import UIKit
 import AddressBook
+import CoreLocation
 
-class CreateGroupViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class CreateGroupViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var expirationDateLabel: UILabel!
     
     @IBOutlet weak var expirationDatePicker: UIDatePicker!
     
     @IBOutlet weak var contactTableView: UITableView!
+    
+    @IBOutlet weak var Lat: UILabel!
+    @IBOutlet weak var Long: UILabel!
+    @IBOutlet weak var Addr: UILabel!
+    var locationManager:CLLocationManager?
     
     lazy var addressBook:ABAddressBookRef = {
         var error: Unmanaged<CFError>?
@@ -44,6 +50,8 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
         default:
             println("unhandled")
         }
+        
+        
     }
     
     var namesAndNumbers = [(String, String)]()
@@ -92,5 +100,16 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell!
         cell.accessoryType = UITableViewCellAccessoryType.None
+    }
+    
+    
+    @IBAction func createGroup(sender: AnyObject) {
+        //Get all the selected values and push it to DB
+        
+        //Getting GPS data
+        locationManager?.delegate = self
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        [locationManager?.startUpdatingLocation];
+        
     }
 }
