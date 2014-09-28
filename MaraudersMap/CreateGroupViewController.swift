@@ -80,7 +80,14 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
             
             let phoneNumbers: ABMultiValueRef = ABRecordCopyValue(person, kABPersonPhoneProperty).takeRetainedValue() as ABMultiValueRef
             
-            var contactNo: String = ABMultiValueCopyValueAtIndex(phoneNumbers, ABMultiValueGetIndexForIdentifier(phoneNumbers, ABMultiValueGetIdentifierAtIndex(phoneNumbers, 0))).takeRetainedValue() as NSString
+            let phoneNumberProperty:ABMultiValueRef = ABRecordCopyValue(person, kABPersonPhoneProperty).takeRetainedValue()
+            
+            var phoneNumberArray:NSArray = ABMultiValueCopyArrayOfAllValues(phoneNumberProperty).takeRetainedValue() as NSArray
+            
+            
+            //var contactNo: String = ABMultiValueCopyValueAtIndex(phoneNumbers, ABMultiValueGetIndexForIdentifier(phoneNumbers, ABMultiValueGetIdentifierAtIndex(phoneNumbers, 0))).takeRetainedValue() as NSString
+            
+            var contactNo: String = phoneNumberArray[0] as NSString
             
             println(contactNo)
             

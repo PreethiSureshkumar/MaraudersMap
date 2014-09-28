@@ -105,6 +105,8 @@
                     <navigationItem key="navigationItem" id="cn0-zM-tea"/>
                     <connections>
                         <outlet property="LoginImage" destination="vgp-x3-jkr" id="wtm-jP-NjH"/>
+                        <outlet property="passWord" destination="kgH-oU-Uon" id="ayh-v9-6BL"/>
+                        <outlet property="userName" destination="RdM-Zi-6yS" id="l65-rO-hUk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
