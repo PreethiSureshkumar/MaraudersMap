@@ -16,9 +16,6 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //make db calls
-        println(userName)
-        println(groupName)
-        
         if(userName=="User 1" && groupName=="Group 1")
         {
             var latitude:CLLocationDegrees = 40.442764

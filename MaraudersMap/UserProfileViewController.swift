@@ -12,13 +12,29 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UITabl
     
     @IBOutlet weak var groupTableView: UITableView!
     
+    @IBOutlet weak var ProfileImage: UIImageView!
+    @IBOutlet weak var groupTableViewHeightConstraint: NSLayoutConstraint!
+    
     var groupName:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        ProfileImage.layer.cornerRadius = 40.0
+        ProfileImage.clipsToBounds = true
         groupTableView.dataSource = self
         groupTableView.delegate = self
+        
+        //groupTableViewHeightConstraint.constant = groupTableView.contentSize.height
+//        groupTableView.sizeToFit()
+       // println("Breakpoint")
+    }
+    
+    override func viewWillLayoutSubviews() {
+        groupTableView.sectionFooterHeight = 0
+        //groupTableView.frame.size.height = groupTableView.contentSize.height
+        groupTableViewHeightConstraint.constant = groupTableView.contentSize.height
+                //groupTableView.sizeToFit()
+        //println("Breakpoint")
     }
     
     override func didReceiveMemoryWarning() {
@@ -35,7 +51,7 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("GroupViewCell") as UITableViewCell
         cell.textLabel!.text = itemsList[indexPath.row]
-        //cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         return cell
     }
     

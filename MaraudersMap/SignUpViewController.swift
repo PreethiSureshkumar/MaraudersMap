@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UIImagePickerControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()

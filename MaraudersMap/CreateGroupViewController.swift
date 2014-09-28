@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AddressBook
 
 class CreateGroupViewController: UIViewController {
    
@@ -14,7 +15,11 @@ class CreateGroupViewController: UIViewController {
     
     @IBOutlet weak var expirationDatePicker: UIDatePicker!
     
-
+    lazy var addressBook:ABAddressBookRef = {
+        var error: Unmanaged<CFError>?
+        return ABAddressBookCreateWithOptions(nil, &error).takeRetainedValue() as ABAddressBookRef
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
