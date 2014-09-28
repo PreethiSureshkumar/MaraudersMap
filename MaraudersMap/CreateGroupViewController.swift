@@ -16,6 +16,7 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var expirationDatePicker: UIDatePicker!
     
     @IBOutlet weak var contactTableView: UITableView!
+    
     lazy var addressBook:ABAddressBookRef = {
         var error: Unmanaged<CFError>?
         return ABAddressBookCreateWithOptions(nil, &error).takeRetainedValue() as ABAddressBookRef
@@ -79,11 +80,17 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("GroupViewCell") as UITableViewCell
         cell.textLabel!.text = namesAndNumbers[indexPath.row].0
-        cell.accessoryType = UITableViewCellAccessoryType.Checkmark
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let number = namesAndNumbers[indexPath.row].1
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell!
+        cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+    }
+    
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell!
+        cell.accessoryType = UITableViewCellAccessoryType.None
     }
 }
