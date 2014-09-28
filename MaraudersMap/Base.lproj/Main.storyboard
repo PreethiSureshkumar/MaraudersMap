@@ -332,7 +332,9 @@
                             <constraint firstItem="Uv0-wP-ouo" firstAttribute="centerX" secondItem="J5M-hh-C1e" secondAttribute="centerX" id="dgK-Pb-fJa"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Create" image="Icon-Small" selectedImage="Icon-Small" id="h63-GR-qpA"/>
+                    <tabBarItem key="tabBarItem" title="Create" image="group_unselected" selectedImage="Icon-Small" id="h63-GR-qpA">
+                        <inset key="imageInsets" minX="4" minY="6" maxX="4" maxY="6"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="Addr" destination="4lL-jK-czN" id="Xhe-D3-s1R"/>
                         <outlet property="Lat" destination="laF-CS-Ekk" id="Yoh-Yd-zsq"/>
@@ -357,7 +359,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Notifications" id="WmR-ud-Lmp"/>
+                    <tabBarItem key="tabBarItem" title="Notifications" image="bell_unselected" badgeValue="1" selectedImage="bell_selected" id="WmR-ud-Lmp">
+                        <inset key="imageInsets" minX="4" minY="7" maxX="4" maxY="4"/>
+                    </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yq0-Lb-9lv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -414,7 +418,9 @@
                             <constraint firstItem="HDB-nr-xN3" firstAttribute="centerX" secondItem="1GS-fo-tTJ" secondAttribute="centerX" id="zDh-7U-vUi"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Join" id="kQM-dr-NqA"/>
+                    <tabBarItem key="tabBarItem" title="Join" image="join_unselected" id="kQM-dr-NqA">
+                        <inset key="imageInsets" minX="4" minY="5" maxX="4" maxY="5"/>
+                    </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JF4-sI-P05" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -479,7 +485,7 @@
                             <constraint firstItem="yfF-NK-Lk0" firstAttribute="leading" secondItem="MZy-L8-Mkc" secondAttribute="leadingMargin" constant="11" id="vSH-FQ-frq"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="home_unselected" badgeValue="1" selectedImage="home_selected" id="aKz-UK-6a0"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home_selected" badgeValue="1" selectedImage="home_selected" id="aKz-UK-6a0"/>
                     <navigationItem key="navigationItem" id="NLv-J1-emd">
                         <nil key="title"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="QwR-dr-kLU"/>
@@ -564,8 +570,11 @@
     </scenes>
     <resources>
         <image name="Icon-Small" width="29" height="29"/>
+        <image name="bell_selected" width="50" height="50"/>
+        <image name="bell_unselected" width="50" height="50"/>
         <image name="default_4" width="200" height="200"/>
+        <image name="group_unselected" width="50" height="50"/>
         <image name="home_selected" width="30" height="30"/>
-        <image name="home_unselected" width="30" height="30"/>
+        <image name="join_unselected" width="50" height="50"/>
     </resources>
 </document>
