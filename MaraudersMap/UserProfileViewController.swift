@@ -13,10 +13,12 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var HomePageItem: UITabBarItem!
     @IBOutlet weak var groupTableView: UITableView!
     
+    @IBOutlet weak var UserNameUserProfile: UILabel!
     @IBOutlet weak var ProfileImage: UIImageView!
     @IBOutlet weak var groupTableViewHeightConstraint: NSLayoutConstraint!
     
     var groupName:String?
+    var userName:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +28,9 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UITabl
         groupTableView.delegate = self
         var home_selected:UIImage = UIImage(named: "home_selected.png")
         HomePageItem.selectedImage = home_selected
+        var tabBar:TabBarControllerMM = self.tabBarController as TabBarControllerMM
+        self.userName = tabBar.userNameTab
+        UserNameUserProfile.text = self.userName
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -67,7 +72,7 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UITabl
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "LoadMapSegue"){
             var mapViewController = segue.destinationViewController as MapViewController
-            mapViewController.userName = "User 1"
+            mapViewController.userName = self.userName
             mapViewController.groupName = groupName
         }
     }

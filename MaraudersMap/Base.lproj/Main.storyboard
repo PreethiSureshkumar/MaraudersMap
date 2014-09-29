@@ -107,6 +107,7 @@
                         <outlet property="LoginImage" destination="vgp-x3-jkr" id="wtm-jP-NjH"/>
                         <outlet property="passWord" destination="kgH-oU-Uon" id="ayh-v9-6BL"/>
                         <outlet property="userName" destination="RdM-Zi-6yS" id="l65-rO-hUk"/>
+                        <segue destination="gf2-vp-QAx" kind="show" identifier="profilePushSegue" id="GIn-qy-3jG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -495,6 +496,7 @@
                     <connections>
                         <outlet property="HomePageItem" destination="aKz-UK-6a0" id="aEO-Wk-3os"/>
                         <outlet property="ProfileImage" destination="qWI-8m-WjQ" id="L5i-Wb-26o"/>
+                        <outlet property="UserNameUserProfile" destination="Ca2-mM-XNi" id="wGY-lw-dTX"/>
                         <outlet property="groupTableView" destination="yfF-NK-Lk0" id="UKz-n2-ggm"/>
                         <outlet property="groupTableViewHeightConstraint" destination="gxc-LK-Y6Q" id="dcS-6X-avv"/>
                         <segue destination="Z8E-1x-dgh" kind="show" identifier="LoadMapSegue" id="aye-Uc-ie8"/>
@@ -502,7 +504,45 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nmK-Qs-TtP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2593" y="69"/>
+            <point key="canvasLocation" x="2427" y="64"/>
+        </scene>
+        <!--Item 2-->
+        <scene sceneID="3j8-Fg-AcN">
+            <objects>
+                <viewController id="jGE-Ab-eW5" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EF9-Wf-i2Y"/>
+                        <viewControllerLayoutGuide type="bottom" id="FRA-AF-Ita"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CBB-Lh-Gtw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="n3v-DT-pYH"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="r02-R9-6Ov" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2001" y="-935"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="COY-Pe-FXK">
+            <objects>
+                <viewController id="4DM-Lt-Vk8" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Y1r-1H-f3l"/>
+                        <viewControllerLayoutGuide type="bottom" id="RMG-7p-VGf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YNQ-hr-R5d">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="3fF-Zp-ouf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fgl-7f-ZQv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2001" y="-1591"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="gZJ-NV-Yx4">
@@ -530,10 +570,10 @@
             </objects>
             <point key="canvasLocation" x="3281" y="73"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar ControllerMM-->
         <scene sceneID="1sm-ge-nj2">
             <objects>
-                <tabBarController storyboardIdentifier="UserProfileViewController" id="gf2-vp-QAx" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="UserProfileViewController" id="gf2-vp-QAx" customClass="TabBarControllerMM" customModule="MaraudersMap" customModuleProvider="target" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" barStyle="black" id="DsP-0f-xli">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
