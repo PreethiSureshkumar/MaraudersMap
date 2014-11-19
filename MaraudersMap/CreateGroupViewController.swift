@@ -107,7 +107,7 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("GroupViewCell") as UITableViewCell
-        cell.textLabel!.text = namesAndNumbers[indexPath.row].0
+        cell.textLabel.text = namesAndNumbers[indexPath.row].0
         return cell
     }
     

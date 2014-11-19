@@ -34,14 +34,13 @@ class ViewController: UIViewController {
         let password = passWord.text
         // Now escape anything else that isn't URL-friendly
         if account != nil {
-            
             if password != nil {
                 
                 let urlPath = "http://ec2-54-86-76-107.compute-1.amazonaws.com:8080/alpha/login?account=\(account)&password=\(password)"
                 
                 println(urlPath)
                 
-                let url: NSURL = NSURL(string: urlPath)
+                let url: NSURL! = NSURL(string: urlPath)
                 
                 let session = NSURLSession.sharedSession()
                 
@@ -59,9 +58,9 @@ class ViewController: UIViewController {
                        // If there is an error parsing JSON, print it to the console
                         
                     }
-                    let results: Int = jsonResult["status"] as Int
+                    let results: String = jsonResult["status"] as String
                     println(results)
-                    if results == 0 {
+                    if results == "OK" {
                         dispatch_async(dispatch_get_main_queue(), {
                             self.performSegueWithIdentifier("profilePushSegue", sender: self)
                             })

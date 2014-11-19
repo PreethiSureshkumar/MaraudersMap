@@ -26,7 +26,7 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UITabl
         ProfileImage.clipsToBounds = true
         groupTableView.dataSource = self
         groupTableView.delegate = self
-        var home_selected:UIImage = UIImage(named: "home_selected.png")
+        var home_selected:UIImage! = UIImage(named: "home_selected.png")
         HomePageItem.selectedImage = home_selected
         var tabBar:TabBarControllerMM = self.tabBarController as TabBarControllerMM
         self.userName = tabBar.userNameTab
@@ -58,7 +58,7 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("GroupViewCell") as UITableViewCell
-        cell.textLabel!.text = itemsList[indexPath.row]
+        cell.textLabel.text = itemsList[indexPath.row]
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         return cell
     }
