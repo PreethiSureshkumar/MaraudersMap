@@ -441,29 +441,19 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_4" translatesAutoresizingMaskIntoConstraints="NO" id="qWI-8m-WjQ">
                                 <rect key="frame" x="27" y="117" width="80" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="dmw-Ye-pVt"/>
-                                    <constraint firstAttribute="height" constant="80" id="mIn-Yz-mxt"/>
+                                    <constraint firstAttribute="width" constant="80" id="uz7-8Q-AFK"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ca2-mM-XNi">
-                                <rect key="frame" x="273" y="105" width="216" height="48"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="top" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="yfF-NK-Lk0">
-                                <rect key="frame" x="27" y="234" width="513" height="60"/>
+                                <rect key="frame" x="27" y="234" width="510" height="254"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="gxc-LK-Y6Q"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="GroupViewCell" textLabel="pE1-8Z-rjb" rowHeight="44" style="IBUITableViewCellStyleDefault" id="Uot-yE-zhY">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Uot-yE-zhY" id="Kkq-DA-d49">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pE1-8Z-rjb">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Group" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pE1-8Z-rjb">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -473,15 +463,30 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
+                                <sections/>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ca2-mM-XNi">
+                                <rect key="frame" x="304" y="134" width="205" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="CCM-r0-1VB"/>
+                                    <constraint firstAttribute="width" constant="205" id="ISM-9T-UV7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qWI-8m-WjQ" firstAttribute="top" secondItem="17c-6j-uEY" secondAttribute="bottom" constant="53" id="Z5s-nR-LS5"/>
-                            <constraint firstItem="yfF-NK-Lk0" firstAttribute="top" secondItem="qWI-8m-WjQ" secondAttribute="bottom" constant="37" id="bj5-xl-VE4"/>
-                            <constraint firstItem="qWI-8m-WjQ" firstAttribute="leading" secondItem="yfF-NK-Lk0" secondAttribute="leading" id="cMC-tT-Yt0"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="yfF-NK-Lk0" secondAttribute="trailing" constant="44" id="qra-6D-Xxy"/>
-                            <constraint firstItem="yfF-NK-Lk0" firstAttribute="leading" secondItem="MZy-L8-Mkc" secondAttribute="leadingMargin" constant="11" id="vSH-FQ-frq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yfF-NK-Lk0" secondAttribute="trailing" constant="47" id="7X5-iY-QqT"/>
+                            <constraint firstItem="yfF-NK-Lk0" firstAttribute="top" secondItem="qWI-8m-WjQ" secondAttribute="bottom" constant="37" id="IbS-jB-PKU"/>
+                            <constraint firstItem="qWI-8m-WjQ" firstAttribute="top" secondItem="17c-6j-uEY" secondAttribute="bottom" constant="53" id="JRh-bW-Y9a"/>
+                            <constraint firstItem="qWI-8m-WjQ" firstAttribute="leading" secondItem="MZy-L8-Mkc" secondAttribute="leadingMargin" constant="11" id="OTm-yt-LRz"/>
+                            <constraint firstItem="DzD-LX-3Eo" firstAttribute="top" secondItem="yfF-NK-Lk0" secondAttribute="bottom" constant="63" id="SPy-mX-2DE"/>
+                            <constraint firstItem="yfF-NK-Lk0" firstAttribute="top" secondItem="Ca2-mM-XNi" secondAttribute="bottom" constant="49" id="WGf-gY-vgD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ca2-mM-XNi" secondAttribute="trailing" constant="75" id="gJe-rZ-vef"/>
+                            <constraint firstItem="qWI-8m-WjQ" firstAttribute="leading" secondItem="yfF-NK-Lk0" secondAttribute="leading" id="l9Y-eN-NJi"/>
+                            <constraint firstItem="Ca2-mM-XNi" firstAttribute="top" secondItem="17c-6j-uEY" secondAttribute="bottom" constant="70" id="vxf-Np-ES6"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="home_selected" badgeValue="1" selectedImage="home_selected" id="aKz-UK-6a0"/>
@@ -494,7 +499,6 @@
                         <outlet property="ProfileImage" destination="qWI-8m-WjQ" id="L5i-Wb-26o"/>
                         <outlet property="UserNameUserProfile" destination="Ca2-mM-XNi" id="wGY-lw-dTX"/>
                         <outlet property="groupTableView" destination="yfF-NK-Lk0" id="UKz-n2-ggm"/>
-                        <outlet property="groupTableViewHeightConstraint" destination="gxc-LK-Y6Q" id="dcS-6X-avv"/>
                         <segue destination="Z8E-1x-dgh" kind="show" identifier="LoadMapSegue" id="aye-Uc-ie8"/>
                     </connections>
                 </viewController>
