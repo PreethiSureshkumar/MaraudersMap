@@ -268,7 +268,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="createGroup:" destination="xMH-OF-xTe" eventType="touchUpInside" id="GuQ-3h-5DW"/>
+                                    <action selector="createGroup:" destination="xMH-OF-xTe" eventType="touchUpInside" id="4G1-Ph-1yu"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Long" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nvh-N0-5Yg">
@@ -370,6 +370,7 @@
                         <outlet property="contactTableView" destination="Uv0-wP-ouo" id="p8E-4w-nGm"/>
                         <outlet property="expirationPicker" destination="PIz-TT-1aO" id="iLs-Um-QC2"/>
                         <outlet property="expirationSelect" destination="y1T-dV-nGR" id="u2E-gQ-gIX"/>
+                        <outlet property="groupNameText" destination="jdc-zP-03U" id="8zz-Ae-4XE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TTW-yz-etC" userLabel="First Responder" sceneMemberID="firstResponder"/>
