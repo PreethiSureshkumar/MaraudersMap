@@ -10,19 +10,22 @@ import UIKit
 import AddressBook
 import CoreLocation
 
-class CreateGroupViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
+class CreateGroupViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate,UIPickerViewDataSource,UIPickerViewDelegate {
     
-    @IBOutlet weak var expirationDateLabel: UILabel!
+    //@IBOutlet weak var expirationDateLabel: UILabel!
     
-    @IBOutlet weak var expirationDatePicker: UIDatePicker!
+    //@IBOutlet weak var expirationDatePicker: UIDatePicker!
+    //@IBOutlet weak var expirationLabel: UILabel!
     
+    @IBOutlet weak var expirationSelect: UITextField!
+    @IBOutlet weak var expirationPicker: UIPickerView!
     @IBOutlet weak var contactTableView: UITableView!
     
     @IBOutlet weak var Lat: UILabel!
     @IBOutlet weak var Long: UILabel!
     @IBOutlet weak var Addr: UILabel!
     var locationManager:CLLocationManager!
-    
+    var expirationOptions = ["1 hr", "2 hrs", "6 hrs", "12 hrs", "24 hrs", "2 days", "4 days", "1 week"]
     lazy var addressBook:ABAddressBookRef = {
         var error: Unmanaged<CFError>?
         return ABAddressBookCreateWithOptions(nil, &error).takeRetainedValue() as ABAddressBookRef
@@ -30,6 +33,10 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        expirationPicker.dataSource = self
+        expirationPicker.delegate = self
+        expirationPicker.selectRow(4, inComponent: 0, animated: true)
+        expirationSelect.text = expirationOptions[4]
         switch ABAddressBookGetAuthorizationStatus(){
         case .Authorized:
             readFromAddressBook(addressBook)
@@ -51,6 +58,7 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
             println("unhandled")
         }
         
+        //Gather Data to create a group
         
     }
     
@@ -154,5 +162,19 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
             println(coord.latitude)
             println(coord.longitude)
         //}
+    }
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return expirationOptions.count
+    }
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        return expirationOptions[row]
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        expirationSelect.text = expirationOptions[row]
     }
 }
