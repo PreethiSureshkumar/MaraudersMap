@@ -18,7 +18,6 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
     //@IBOutlet weak var expirationLabel: UILabel!
     
     @IBOutlet weak var groupNameText: UITextField!
-    @IBOutlet weak var expirationSelect: UITextField!
     @IBOutlet weak var expirationPicker: UIPickerView!
     @IBOutlet weak var contactTableView: UITableView!
     
@@ -27,8 +26,10 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var Addr: UILabel!
     
     var locationManager:CLLocationManager!
-    var expirationOptions = ["1 hr", "2 hrs", "6 hrs", "12 hrs", "24 hrs", "2 days", "4 days", "1 week"]
+    var expirationOptions = [("1 hr",1), ("2 hrs",2), ("6 hrs",6), ("12 hrs",12), ("24 hrs",24), ("2 days",48), ("4 days",96), ("1 week",168)]
     var selectedContacts = [String]()
+    var validity = 24
+    var userName:String?
     lazy var addressBook:ABAddressBookRef = {
         var error: Unmanaged<CFError>?
         return ABAddressBookCreateWithOptions(nil, &error).takeRetainedValue() as ABAddressBookRef
@@ -39,8 +40,9 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
         expirationPicker.dataSource = self
         expirationPicker.delegate = self
         expirationPicker.selectRow(4, inComponent: 0, animated: true)
-        expirationSelect.text = expirationOptions[4]
         contactTableView.allowsMultipleSelection = true
+        var tabBar:TabBarControllerMM = self.tabBarController as TabBarControllerMM
+        self.userName = tabBar.userNameTab
         switch ABAddressBookGetAuthorizationStatus(){
         case .Authorized:
             readFromAddressBook(addressBook)
@@ -138,20 +140,25 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
     
     @IBAction func createGroup(sender: AnyObject) {
         //Get all the selected values and push it to DB
-        
+    println(self.userName)
         
         if let groupname = groupNameText.text {
-            if let expirationDate = expirationSelect.text {
+            if let username = self.userName {
                 var member:String = ""
                 for (index, value) in enumerate(selectedContacts)
                 {
                     var item : String = selectedContacts[index] as String
+                    item  = item .stringByReplacingOccurrencesOfString("(", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                    item  = item .stringByReplacingOccurrencesOfString(")", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                    item  = item .stringByReplacingOccurrencesOfString("-", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                    item  = item .stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
                     member+=item
                     member+=","
                 }
-                println(member.substringToIndex(member.endIndex.predecessor()))
+               
                 //construct the DB url
-                /*let urlPath = "http://ec2-54-86-76-107.compute-1.amazonaws.com:8080/alpha/create-group?valid=\(expirationDate)&groupid=\(groupname)&member=\(member)"
+                println(validity)
+                let urlPath = "http://ec2-54-86-76-107.compute-1.amazonaws.com:8080/alpha/create-group?name=\(groupname)&user=\(username)&members=\(member.substringToIndex(member.endIndex.predecessor()))&valid=\(validity)"
                 
                 println(urlPath)
                 
@@ -175,22 +182,15 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
                     let results: String = jsonResult["status"] as String
                     println(results)
                     if results == "OK" {
-                        if let groupArr = jsonResult["groupid"] as? NSArray{
-                            for (index, value) in enumerate(groupArr)
-                            {
-                                var item : String = groupArr[index] as String
-                                self.itemsList+=[item]
-                            }
-                            dispatch_async(dispatch_get_main_queue(), {
-                                self.groupTableView.reloadData()
-                            })
-                        }
+                        dispatch_async(dispatch_get_main_queue(), {
+                        var alert = UIAlertController(title: "Success", message: "Group Created", preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                        self.presentViewController(alert, animated: true, completion: nil)
+                        })
                     }
                 })
-                task.resume()*/
+                task.resume()
 
-                
-                //Go back to the user menu
             }
         }
         
@@ -231,11 +231,11 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
         return expirationOptions.count
     }
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return expirationOptions[row]
+        return expirationOptions[row].0
     }
     
    
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        expirationSelect.text = expirationOptions[row]
+        self.validity = expirationOptions[row].1
     }
 }

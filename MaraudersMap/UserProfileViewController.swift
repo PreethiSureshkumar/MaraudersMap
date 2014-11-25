@@ -19,7 +19,9 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UITabl
     
     var groupName:String?
     var userName:String?
-    var itemsList = [String]()
+    var itemsList = [(String,String)]()
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +31,7 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UITabl
         groupTableView.delegate = self
         var home_selected:UIImage! = UIImage(named: "home_selected.png")
         HomePageItem.selectedImage = home_selected
-        var tabBar:TabBarControllerMM = self.tabBarController as TabBarControllerMM
+        var tabBar:TabBarControllerMM = tabBarController as TabBarControllerMM
         self.userName = tabBar.userNameTab
         UserNameUserProfile.text = self.userName
         
@@ -59,28 +61,31 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UITabl
                     let results: String = jsonResult["status"] as String
                     println(results)
                     if results == "OK" {
-                        if let groupArr = jsonResult["groupid"] as? NSArray{
-                            for (index, value) in enumerate(groupArr)
+                        if let groupidArr = jsonResult["groupid"] as? NSArray{
+                            if let groupnameArr = jsonResult["groupname"] as? NSArray {
+                            for (index, value) in enumerate(groupidArr)
                             {
-                                var item : String = groupArr[index] as String
-                                self.itemsList+=[item]
+                                var item : String = groupidArr[index] as String
+                                var name : String = groupnameArr[index] as String
+                                self.itemsList.append((item,name))
                             }
                             dispatch_async(dispatch_get_main_queue(), {
                                 self.groupTableView.reloadData()
                             })
                         }
                     }
+            }
                 })
                 task.resume()
         }
-
     }
     
     override func viewDidAppear(animated: Bool) {
-        var badgeValue:String = HomePageItem.badgeValue!
+        /*var badgeValue:String = HomePageItem.badgeValue!
         var badgeNo:Int = badgeValue.toInt()!
         badgeNo = badgeNo + 1
-        HomePageItem.badgeValue = "\(badgeNo)"
+        HomePageItem.badgeValue = "\(badgeNo)"*/
+
     }
     override func viewWillLayoutSubviews() {
         groupTableView.sectionHeaderHeight = 0.0
@@ -99,15 +104,25 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("GroupViewCell") as UITableViewCell
-        cell.textLabel.text = self.itemsList[indexPath.row]
+        cell.textLabel.text = self.itemsList[indexPath.row].1
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        groupName = self.itemsList[indexPath.row]
+        groupName = self.itemsList[indexPath.row].1
         self.performSegueWithIdentifier("LoadMapSegue", sender: self)
         
+    }
+    
+    func tableView(tableView: UITableView!, canEditRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            // handle delete (by removing the data from your array and updating the tableview)
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -117,4 +132,5 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UITabl
             mapViewController.groupName = groupName
         }
     }
+    
 }
