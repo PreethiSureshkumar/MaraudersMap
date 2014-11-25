@@ -85,6 +85,61 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UITabl
         var badgeNo:Int = badgeValue.toInt()!
         badgeNo = badgeNo + 1
         HomePageItem.badgeValue = "\(badgeNo)"*/
+        if let accountID = self.userName {
+            
+            let urlPath = "http://ec2-54-86-76-107.compute-1.amazonaws.com:8080/alpha/list-group?account=\(accountID)"
+            
+            println(urlPath)
+            
+            let url: NSURL! = NSURL(string: urlPath)
+            
+            let session = NSURLSession.sharedSession()
+            
+            let task = session.dataTaskWithURL(url, completionHandler: {data, response, error -> Void in
+                println("Task completed")
+                if(error != nil) {
+                    // If there is an error in the web request, print it to the console
+                    println(error.localizedDescription)
+                } else {
+                    println(data)
+                }
+                var err: NSError?
+                var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as NSDictionary
+                if(err != nil) {
+                    // If there is an error parsing JSON, print it to the console
+                }
+                let results: String = jsonResult["status"] as String
+                println(results)
+                var groupIdList = [String]()
+                for (index, value) in enumerate(self.itemsList)
+                {
+                    var item: String = self.itemsList[index].0
+                    groupIdList.append(item)
+                }
+                if results == "OK" {
+                    if let groupidArr = jsonResult["groupid"] as? NSArray{
+                        if let groupnameArr = jsonResult["groupname"] as? NSArray {
+                            for (index, value) in enumerate(groupidArr)
+                            {
+                                var item : String = groupidArr[index] as String
+                                var name : String = groupnameArr[index] as String
+                                if contains(groupIdList,item){
+                                    
+                                }else {
+                                self.itemsList.append((item,name))
+                                }
+                                
+                            }
+                            dispatch_async(dispatch_get_main_queue(), {
+                                self.groupTableView.reloadData()
+                            })
+                        }
+                    }
+                }
+            })
+            task.resume()
+        }
+
 
     }
     override func viewWillLayoutSubviews() {

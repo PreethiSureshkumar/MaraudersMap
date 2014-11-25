@@ -96,16 +96,19 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
             
             let phoneNumberProperty:ABMultiValueRef = ABRecordCopyValue(person, kABPersonPhoneProperty).takeRetainedValue()
             
+            let x = ABMultiValueCopyArrayOfAllValues(phoneNumberProperty)
+                if x != nil{
             var phoneNumberArray:NSArray = ABMultiValueCopyArrayOfAllValues(phoneNumberProperty).takeRetainedValue() as NSArray
             
             
             //var contactNo: String = ABMultiValueCopyValueAtIndex(phoneNumbers, ABMultiValueGetIndexForIdentifier(phoneNumbers, ABMultiValueGetIdentifierAtIndex(phoneNumbers, 0))).takeRetainedValue() as NSString
             
-            var contactNo: String = phoneNumberArray[0] as NSString
+            if let contactNo = phoneNumberArray[0] as? NSString {
+                println(contactNo)
+                self.namesAndNumbers.append((contactName, contactNo))
+            }
+            }
             
-            println(contactNo)
-            
-            namesAndNumbers.append((contactName, contactNo))
         }
         
     }
@@ -186,6 +189,9 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
                         var alert = UIAlertController(title: "Success", message: "Group Created", preferredStyle: UIAlertControllerStyle.Alert)
                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
                         self.presentViewController(alert, animated: true, completion: nil)
+                        //self.performSegueWithIdentifier("profilePushSegue", sender: self)
+                        //let vc = UserProfileViewController()
+                        //self.presentViewController(vc,animated: true, completion: nil)
                         })
                     }
                 })
@@ -238,4 +244,12 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.validity = expirationOptions[row].1
     }
+    
+    /*override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "profilePushSegue"){
+            var profilePageController = segue.destinationViewController as TabBarControllerMM
+            profilePageController.userNameTab = newUserContactNo.text
+        }
+    }*/
+
 }
