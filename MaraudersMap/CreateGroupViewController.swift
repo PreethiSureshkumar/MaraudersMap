@@ -88,9 +88,9 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
         
         namesAndNumbers = [(String, String)]()
         for person: ABRecordRef in allPeople{
-            //println(person)
+            println(person)
             var contactName: String = ABRecordCopyCompositeName(person).takeRetainedValue() as NSString
-            //println ("contactName \(contactName)")
+            println ("contactName \(contactName)")
             
             let phoneNumbers: ABMultiValueRef = ABRecordCopyValue(person, kABPersonPhoneProperty).takeRetainedValue() as ABMultiValueRef
             
@@ -158,7 +158,7 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
     
     @IBAction func createGroup(sender: AnyObject) {
         //Get all the selected values and push it to DB
-    println(self.userName)
+        println(self.userName)
         
         if let groupname = groupNameText.text {
             if let username = self.userName {
