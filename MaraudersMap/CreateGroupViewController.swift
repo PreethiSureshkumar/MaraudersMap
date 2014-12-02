@@ -10,7 +10,7 @@ import UIKit
 import AddressBook
 import CoreLocation
 
-class CreateGroupViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate,UIPickerViewDataSource,UIPickerViewDelegate {
+class CreateGroupViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate,UIPickerViewDataSource,UIPickerViewDelegate, UITextFieldDelegate {
     
     //@IBOutlet weak var expirationDateLabel: UILabel!
     
@@ -41,6 +41,7 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
         expirationPicker.delegate = self
         expirationPicker.selectRow(4, inComponent: 0, animated: true)
         contactTableView.allowsMultipleSelection = true
+        groupNameText.delegate = self
         var tabBar:TabBarControllerMM = self.tabBarController as TabBarControllerMM
         self.userName = tabBar.userNameTab
         switch ABAddressBookGetAuthorizationStatus(){
@@ -266,6 +267,12 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
    
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.validity = expirationOptions[row].1
+    }
+    
+    func textFieldShouldReturn(textField: UITextField!) -> Bool // called when 'return' key pressed. return NO to ignore.
+    {
+        textField.resignFirstResponder()
+        return true;
     }
     
     /*override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
