@@ -8,7 +8,7 @@
 
 import UIKit
 
-class JoinGroupViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
+class JoinGroupViewController: UIViewController,UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate{
     
     @IBOutlet weak var keyword: UITextField!
     
@@ -21,6 +21,7 @@ class JoinGroupViewController: UIViewController,UITableViewDataSource, UITableVi
         super.viewDidLoad()
         groupTableView.dataSource = self
         groupTableView.delegate = self
+        keyword.delegate = self
         var tabBar:TabBarControllerMM = self.tabBarController as TabBarControllerMM
         self.userName = tabBar.userNameTab
         // Do any additional setup after loading the view, typically from a nib.
@@ -260,4 +261,10 @@ class JoinGroupViewController: UIViewController,UITableViewDataSource, UITableVi
             }
         }
     }
+}
+
+func textFieldShouldReturn(textField: UITextField!) -> Bool // called when 'return' key pressed. return NO to ignore.
+{
+    textField.resignFirstResponder()
+    return true;
 }
