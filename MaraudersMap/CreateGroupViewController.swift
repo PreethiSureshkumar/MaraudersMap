@@ -26,6 +26,8 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var Addr: UILabel!
     
     var locationManager:CLLocationManager!
+    var locationStatus : NSString = "Not Started"
+    
     var expirationOptions = [("1 hr",1), ("2 hrs",2), ("6 hrs",6), ("12 hrs",12), ("24 hrs",24), ("2 days",48), ("4 days",96), ("1 week",168)]
     var selectedContacts = [String]()
     var validity = 24
@@ -159,7 +161,7 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
     
     @IBAction func createGroup(sender: AnyObject) {
         //Get all the selected values and push it to DB
-        println(self.userName)
+        /*println(self.userName)
         let groupname = groupNameText.text
         if groupname == "" {
             dispatch_async(dispatch_get_main_queue(), {
@@ -168,8 +170,18 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
                 self.presentViewController(alert, animated: true, completion: nil)
             })
         }
+        
+        if selectedContacts.count == 0 {
+            dispatch_async(dispatch_get_main_queue(), {
+                var alert = UIAlertController(title: "Contacts", message: "Select contact(s) to create a group", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            })
+        }
+        
         if groupname != "" {
             if let username = self.userName {
+                if selectedContacts.count != 0 {
                 var member:String = ""
                 for (index, value) in enumerate(selectedContacts)
                 {
@@ -220,16 +232,16 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
                     }
                 })
                 task.resume()
-
+                }
             }
-        }
+        }*/
         
         //Getting GPS data
-        /*locationManager = CLLocationManager()
+        locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()*/
+        locationManager.startUpdatingLocation()
         
     }
     
@@ -252,6 +264,31 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
             println(coord.latitude)
             println(coord.longitude)
         //}
+    }
+    
+    func locationManager(manager: CLLocationManager!,
+        didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+            var shouldIAllow = false
+            
+            switch status {
+            case CLAuthorizationStatus.Restricted:
+                locationStatus = "Restricted Access to location"
+            case CLAuthorizationStatus.Denied:
+                locationStatus = "User denied access to location"
+            case CLAuthorizationStatus.NotDetermined:
+                locationStatus = "Status not determined"
+            default:
+                locationStatus = "Allowed to location Access"
+                shouldIAllow = true
+            }
+            NSNotificationCenter.defaultCenter().postNotificationName("LabelHasbeenUpdated", object: nil)
+            if (shouldIAllow == true) {
+                NSLog("Location to Allowed")
+                // Start location services
+                locationManager.startUpdatingLocation()
+            } else {
+                NSLog("Denied access: \(locationStatus)")
+            }
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
