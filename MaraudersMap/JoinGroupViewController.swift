@@ -15,7 +15,7 @@ class JoinGroupViewController: UIViewController,UITableViewDataSource, UITableVi
     @IBOutlet weak var groupTableView: UITableView!
     
     var userName:String?
-    var itemsList = [(String,String)]()
+    var itemsList = [(String,String,Int)]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,11 +42,14 @@ class JoinGroupViewController: UIViewController,UITableViewDataSource, UITableVi
         return cell
     }
     
-    /*func tableView(tableView: UITableView!, canEditRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
-        return true
+    func tableView(tableView: UITableView!, canEditRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
+        if self.itemsList[indexPath.row].2 != 100 {
+             return true
+        }
+        return false
     }
     
-    func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
+    /*func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
             // handle delete (by removing the data from your array and updating the tableview)
         }
@@ -54,14 +57,122 @@ class JoinGroupViewController: UIViewController,UITableViewDataSource, UITableVi
     
     func tableView(tableView: UITableView!, editActionsForRowAtIndexPath indexPath: NSIndexPath!) -> [AnyObject]! {
     var joinAction = UITableViewRowAction(style: .Normal, title: "Join") { (action, indexPath) -> Void in
-    tableView.editing = false
-    println("join Group")
+    //tableView.editing = false
+    //DB call here
+        var group:String? = self.itemsList[indexPath.row].0 as String
+        if let groupid =  group{
+            if let username = self.userName {
+                let urlPath = "http://ec2-54-86-76-107.compute-1.amazonaws.com:8080/alpha/request?account=\(username)&groupid=\(groupid)"
+                
+                println(urlPath)
+                let url: NSURL! = NSURL(string: urlPath)
+                
+                let session = NSURLSession.sharedSession()
+                
+                let task = session.dataTaskWithURL(url, completionHandler: {data, response, error -> Void in
+                    println("Task completed")
+                    if(error != nil) {
+                        // If there is an error in the web request, print it to the console
+                        println(error.localizedDescription)
+                    } else {
+                        println(data)
+                    }
+                    var err: NSError?
+                    var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as NSDictionary
+                    if(err != nil) {
+                        // If there is an error parsing JSON, print it to the console
+                        println(err)
+                    }
+                    let results: String = jsonResult["status"] as String
+                    println(results)
+                    if results == "OK" {
+                        self.itemsList[indexPath.row].2 = 2
+                        dispatch_async(dispatch_get_main_queue(), {
+                            var alert = UIAlertController(title: "Success", message: "Join Request Sent", preferredStyle: UIAlertControllerStyle.Alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                            self.presentViewController(alert, animated: true, completion: nil)
+                        })
+                    }
+                })
+                task.resume()
+                
+            }
+        }
+        self.groupTableView.reloadData()
     }
     joinAction.backgroundColor = UIColor.blueColor()
-    //joinAction.handler =
     
-       
-    return [joinAction]
+        
+    var joinedAction = UITableViewRowAction(style: .Normal, title: "Show Map") { (action, indexPath) -> Void in
+            //Goto Segue to show the map
+    }
+    joinedAction.backgroundColor = UIColor.yellowColor()
+    
+    var acceptAction = UITableViewRowAction(style: .Normal, title: "Accept") { (action, indexPath) -> Void in
+            var group:String? = self.itemsList[indexPath.row].0 as String
+            if let groupid =  group{
+                if let username = self.userName {
+                    let urlPath = "http://ec2-54-86-76-107.compute-1.amazonaws.com:8080/alpha/request?account=\(username)&groupid=\(groupid)"
+                    
+                    println(urlPath)
+                    let url: NSURL! = NSURL(string: urlPath)
+                    
+                    let session = NSURLSession.sharedSession()
+                    
+                    let task = session.dataTaskWithURL(url, completionHandler: {data, response, error -> Void in
+                        println("Task completed")
+                        if(error != nil) {
+                            // If there is an error in the web request, print it to the console
+                            println(error.localizedDescription)
+                        } else {
+                            println(data)
+                        }
+                        var err: NSError?
+                        var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as NSDictionary
+                        if(err != nil) {
+                            // If there is an error parsing JSON, print it to the console
+                            println(err)
+                        }
+                        let results: String = jsonResult["status"] as String
+                        println(results)
+                        if results == "INVITED" {
+                            self.itemsList[indexPath.row].2 = 100
+                            dispatch_async(dispatch_get_main_queue(), {
+                                var alert = UIAlertController(title: "Success", message: "Join Request Accepted", preferredStyle: UIAlertControllerStyle.Alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                                self.presentViewController(alert, animated: true, completion: nil)
+                            })
+                        }
+                    })
+                    task.resume()
+                    
+                }
+            }
+            self.groupTableView.reloadData()
+        }
+        acceptAction.backgroundColor = UIColor.greenColor()
+        
+        var pendingAction = UITableViewRowAction(style: .Normal, title: "Pending") { (action, indexPath) -> Void in
+            //Goto Segue to show the map
+        }
+        pendingAction.backgroundColor = UIColor.grayColor()
+        
+        println(self.itemsList[indexPath.row].1)
+         println(self.itemsList[indexPath.row].2)
+        if self.itemsList[indexPath.row].2==0 {
+             return [joinAction]
+        }
+        
+        if self.itemsList[indexPath.row].2==1 {
+            return [acceptAction]
+        }
+        
+        if self.itemsList[indexPath.row].2==2 {
+            return [pendingAction]
+        }
+        
+        return [joinedAction]
+        
     }
     
     func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
@@ -85,32 +196,64 @@ class JoinGroupViewController: UIViewController,UITableViewDataSource, UITableVi
                     if(error != nil) {
                         // If there is an error in the web request, print it to the console
                         println(error.localizedDescription)
-                    } else {
+                    } /*else {
                         println(data)
-                    }
+                    }*/
                     var err: NSError?
                     var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as NSDictionary
                     if(err != nil) {
                         // If there is an error parsing JSON, print it to the console
+                        println(err)
                     }
                     let results: String = jsonResult["status"] as String
                     println(results)
-                    if results == "OK" {
-                        if let groupidArr = jsonResult["groupid"] as? NSArray{
-                            if let groupnameArr = jsonResult["groupnames"] as? NSArray {
+                    
+                    
+                    if let groupidArr = jsonResult["groupid"] as? NSArray{
+                        if let groupnameArr = jsonResult["groupnames"] as? NSArray {
+                            if let relationArr = jsonResult["relation"] as? NSArray {
                                 for (index, value) in enumerate(groupidArr)
                                 {
                                     var item : String = groupidArr[index] as String
                                     var name : String = groupnameArr[index] as String
-                                    self.itemsList.append((item,name))
+                                    var relation : Int = relationArr[index] as Int
+                                    self.itemsList.append((item,name,relation))
                                 }
                                 dispatch_async(dispatch_get_main_queue(), {
                                     self.groupTableView.reloadData()
                                 })
                             }
                         }
-
                     }
+                    
+
+                    /*var groupIdList = [String]()
+                    for (index, value) in enumerate(self.itemsList)
+                    {
+                        var item: String = self.itemsList[index].0
+                        groupIdList.append(item)
+                    }
+
+                    if results == "OK" {
+                        if let groupidArr = jsonResult["groupid"] as? NSArray{
+                            if let groupnameArr = jsonResult["groupname"] as? NSArray {
+                                if let relationArr = jsonResult["relation"] as? NSArray {
+                                for (index, value) in enumerate(groupidArr)
+                                {
+                                    var item : String = groupidArr[index] as String
+                                    var name : String = groupnameArr[index] as String
+                                    var relation : Int = relationArr[index] as Int
+                                    if contains(groupIdList,item){
+                                    }else {
+                                         self.itemsList.append((item,name,relation))
+                                    }
+                                }
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    self.groupTableView.reloadData()
+                                })
+                            }
+                        }
+                        }*/
                 })
                 task.resume()
                 }

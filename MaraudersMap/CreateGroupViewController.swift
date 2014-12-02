@@ -88,9 +88,9 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
         
         namesAndNumbers = [(String, String)]()
         for person: ABRecordRef in allPeople{
-            println(person)
+            //println(person)
             var contactName: String = ABRecordCopyCompositeName(person).takeRetainedValue() as NSString
-            println ("contactName \(contactName)")
+            //println ("contactName \(contactName)")
             
             let phoneNumbers: ABMultiValueRef = ABRecordCopyValue(person, kABPersonPhoneProperty).takeRetainedValue() as ABMultiValueRef
             
@@ -103,9 +103,24 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
             
             //var contactNo: String = ABMultiValueCopyValueAtIndex(phoneNumbers, ABMultiValueGetIndexForIdentifier(phoneNumbers, ABMultiValueGetIdentifierAtIndex(phoneNumbers, 0))).takeRetainedValue() as NSString
             
-            if let contactNo = phoneNumberArray[0] as? NSString {
+            if let contactNo1 = phoneNumberArray[0] as? NSString {
+                println(contactNo1)
+                var contactNo :String = contactNo1 as String
+                contactNo  = contactNo .stringByReplacingOccurrencesOfString("(", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
                 println(contactNo)
+                contactNo  = contactNo .stringByReplacingOccurrencesOfString(")", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                println(contactNo)
+                contactNo  = contactNo .stringByReplacingOccurrencesOfString("-", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                println(contactNo)
+                contactNo = contactNo .stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                println(contactNo)
+                contactNo = contactNo .stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                println(contactNo)
+                println(contactNo)
+                println(self.userName)
+                if contactNo != self.userName {
                 self.namesAndNumbers.append((contactName, contactNo))
+                }
             }
             }
             
@@ -155,6 +170,7 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
                     item  = item .stringByReplacingOccurrencesOfString(")", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
                     item  = item .stringByReplacingOccurrencesOfString("-", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
                     item  = item .stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+                    item  = item .stringByReplacingOccurrencesOfString(".", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
                     member+=item
                     member+=","
                 }

@@ -176,7 +176,13 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
-            // handle delete (by removing the data from your array and updating the tableview)
+            let val = self.itemsList.removeAtIndex(indexPath.row)
+            //perform DB call and update the DB
+            println(val.0)
+            println(val.1)
+            // Tell the table view to animate out that row
+            [groupTableView .deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)]
+            self.groupTableView.reloadData()
         }
     }
     
