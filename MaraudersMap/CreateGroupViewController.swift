@@ -159,8 +159,15 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
     @IBAction func createGroup(sender: AnyObject) {
         //Get all the selected values and push it to DB
         println(self.userName)
-        
-        if let groupname = groupNameText.text {
+        let groupname = groupNameText.text
+        if groupname == "" {
+            dispatch_async(dispatch_get_main_queue(), {
+                var alert = UIAlertController(title: "Group Name", message: "Enter a valid group name", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            })
+        }
+        if groupname != "" {
             if let username = self.userName {
                 var member:String = ""
                 for (index, value) in enumerate(selectedContacts)
