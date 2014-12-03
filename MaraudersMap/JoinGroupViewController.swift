@@ -44,10 +44,7 @@ class JoinGroupViewController: UIViewController,UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView!, canEditRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
-        if self.itemsList[indexPath.row].2 != 100 {
              return true
-        }
-        return false
     }
     
     /*func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
@@ -210,7 +207,6 @@ class JoinGroupViewController: UIViewController,UITableViewDataSource, UITableVi
                     println(results)
                     
                     if results == "OK" {
-                    
                     if let groupidArr = jsonResult["groupid"] as? NSArray{
                         if let groupnameArr = jsonResult["groupnames"] as? NSArray {
                             if let relationArr = jsonResult["relation"] as? NSArray {
@@ -229,34 +225,6 @@ class JoinGroupViewController: UIViewController,UITableViewDataSource, UITableVi
                         }
                     }
                     }
-
-                    /*var groupIdList = [String]()
-                    for (index, value) in enumerate(self.itemsList)
-                    {
-                        var item: String = self.itemsList[index].0
-                        groupIdList.append(item)
-                    }
-
-                    if results == "OK" {
-                        if let groupidArr = jsonResult["groupid"] as? NSArray{
-                            if let groupnameArr = jsonResult["groupname"] as? NSArray {
-                                if let relationArr = jsonResult["relation"] as? NSArray {
-                                for (index, value) in enumerate(groupidArr)
-                                {
-                                    var item : String = groupidArr[index] as String
-                                    var name : String = groupnameArr[index] as String
-                                    var relation : Int = relationArr[index] as Int
-                                    if contains(groupIdList,item){
-                                    }else {
-                                         self.itemsList.append((item,name,relation))
-                                    }
-                                }
-                                dispatch_async(dispatch_get_main_queue(), {
-                                    self.groupTableView.reloadData()
-                                })
-                            }
-                        }
-                        }*/
                 })
                 task.resume()
                 }
