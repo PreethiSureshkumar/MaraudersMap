@@ -122,9 +122,9 @@ class JoinGroupViewController: UIViewController,UITableViewDataSource, UITableVi
                         if(error != nil) {
                             // If there is an error in the web request, print it to the console
                             println(error.localizedDescription)
-                        } else {
+                        } /*else {
                             println(data)
-                        }
+                        }*/
                         var err: NSError?
                         var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as NSDictionary
                         if(err != nil) {
@@ -155,8 +155,6 @@ class JoinGroupViewController: UIViewController,UITableViewDataSource, UITableVi
         }
         pendingAction.backgroundColor = UIColor.grayColor()
         
-        println(self.itemsList[indexPath.row].1)
-         println(self.itemsList[indexPath.row].2)
         if self.itemsList[indexPath.row].2==0 {
              return [joinAction]
         }
