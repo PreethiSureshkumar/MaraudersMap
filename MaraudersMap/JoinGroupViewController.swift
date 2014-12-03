@@ -209,10 +209,12 @@ class JoinGroupViewController: UIViewController,UITableViewDataSource, UITableVi
                     let results: String = jsonResult["status"] as String
                     println(results)
                     
+                    if results == "OK" {
                     
                     if let groupidArr = jsonResult["groupid"] as? NSArray{
                         if let groupnameArr = jsonResult["groupnames"] as? NSArray {
                             if let relationArr = jsonResult["relation"] as? NSArray {
+                                self.itemsList = [(String,String,Int)]()
                                 for (index, value) in enumerate(groupidArr)
                                 {
                                     var item : String = groupidArr[index] as String
@@ -226,7 +228,7 @@ class JoinGroupViewController: UIViewController,UITableViewDataSource, UITableVi
                             }
                         }
                     }
-                    
+                    }
 
                     /*var groupIdList = [String]()
                     for (index, value) in enumerate(self.itemsList)
@@ -261,6 +263,7 @@ class JoinGroupViewController: UIViewController,UITableViewDataSource, UITableVi
             }
         }
     }
+        
 }
 
 func textFieldShouldReturn(textField: UITextField!) -> Bool // called when 'return' key pressed. return NO to ignore.

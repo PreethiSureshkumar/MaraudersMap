@@ -161,7 +161,7 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
     
     @IBAction func createGroup(sender: AnyObject) {
         //Get all the selected values and push it to DB
-        /*println(self.userName)
+        println(self.userName)
         let groupname = groupNameText.text
         if groupname == "" {
             dispatch_async(dispatch_get_main_queue(), {
@@ -234,14 +234,14 @@ class CreateGroupViewController: UIViewController, UITableViewDataSource, UITabl
                 task.resume()
                 }
             }
-        }*/
+        }
         
         //Getting GPS data
-        locationManager = CLLocationManager()
+        /*locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
+        locationManager.startUpdatingLocation()*/
         
     }
     

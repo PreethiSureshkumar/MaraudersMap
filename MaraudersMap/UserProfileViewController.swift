@@ -176,13 +176,62 @@ class UserProfileViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
-            let val = self.itemsList.removeAtIndex(indexPath.row)
+            let val = self.itemsList[indexPath.row]
             //perform DB call and update the DB
-            println(val.0)
-            println(val.1)
-            // Tell the table view to animate out that row
-            [groupTableView .deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)]
-            self.groupTableView.reloadData()
+            var gId:String? = val.0 as String
+            if let groupid = gId {
+                if let username = self.userName {
+                    let urlPath = "http://ec2-54-86-76-107.compute-1.amazonaws.com:8080/alpha/delete?account=\(username)&groupid=\(groupid)"
+                    println(urlPath)
+                    
+                    let url: NSURL! = NSURL(string: urlPath)
+                    
+                    let session = NSURLSession.sharedSession()
+                    
+                    let task = session.dataTaskWithURL(url, completionHandler: {data, response, error -> Void in
+                        println("Task completed")
+                        if(error != nil) {
+                            // If there is an error in the web request, print it to the console
+                            println(error.localizedDescription)
+                        } else {
+                            println(data)
+                        }
+                        var err: NSError?
+                        var jsonResult = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: &err) as NSDictionary
+                        if(err != nil) {
+                            // If there is an error parsing JSON, print it to the console
+                        }
+                        let results: String = jsonResult["status"] as String
+                        println(results)
+                        var groupIdList = [String]()
+                        for (index, value) in enumerate(self.itemsList)
+                        {
+                            var item: String = self.itemsList[index].0
+                            groupIdList.append(item)
+                        }
+                        if results == "OK" {
+                            // Tell the table view to animate out that row
+                            dispatch_async(dispatch_get_main_queue(), {
+                                //[self.groupTableView .deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)]
+                                self.itemsList.removeAtIndex(indexPath.row)
+                                self.groupTableView.reloadData()
+                            })
+
+                        }
+                        
+                        if results == "NO_GRANT" {
+                            dispatch_async(dispatch_get_main_queue(), {
+                                var alert = UIAlertController(title: "No Access", message: "Only admin can delete the group", preferredStyle: UIAlertControllerStyle.Alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                                self.presentViewController(alert, animated: true, completion: nil)
+                            })
+
+                        }
+                    })
+                    task.resume()
+                }
+            }
+                       self.groupTableView.reloadData()
         }
     }
     
